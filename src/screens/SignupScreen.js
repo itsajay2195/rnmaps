@@ -11,6 +11,7 @@ export default function SignupScreen({ navigation }) {
     const [password, setPassword] = useState('')
     
     
+    console.log(state)
     return (
         <View style={styles.container}>
             <Spacer>
@@ -19,11 +20,10 @@ export default function SignupScreen({ navigation }) {
             <Input autoCapitalize="none"  autoCorrect={false} label="Email" value={email} onChangeText={setEmail}/>
             <Spacer />
             <Input secureTextEntry autoCapitalize="none"  autoCorrect={false} label="Password" value={password} onChangeText={setPassword}/>
+            {state.errorMessage ? <Text style={{margin:15,color:'red',fontSize:16}}>{state.errorMessage}</Text>:null}
             <Spacer>
-                {/* <Button title="Sign Up" onPress={() => signup({email,password})} /> */}
-                <TouchableOpacity onPress={() => signup({email,password})}> 
-                    <Text style={styles.button} >Sign Up</Text>
-                </TouchableOpacity>
+                <Button title="Sign Up" onPress={() => signup({email,password})} />
+                
             </Spacer>
         </View>
     )
