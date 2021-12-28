@@ -1,6 +1,6 @@
-import React,{useState, useContext} from 'react'
+import React,{ useContext} from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Text, Input, Button } from 'react-native-elements'
+import { Text, } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Spacer from '../components/Spacer'
 import {Context} from '../context/AuthContext'
@@ -18,12 +18,14 @@ export default function SignupScreen({ navigation }) {
              errorMessage={state.errorMessage}
              submitButtonText="Sign Up"
              onSubmit={signup}
+             linkText="signup"
+             routeName="Signin"
             />
-            <Spacer>
+            {/* <Spacer>
                 <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
                     <Text style={styles.linkText}>Already have an account? Sign in</Text>
                 </TouchableOpacity>
-            </Spacer>
+            </Spacer> */}
         </View>
     )
 }
