@@ -23,7 +23,11 @@ export default function SignupScreen({ navigation }) {
             {state.errorMessage ? <Text style={{margin:15,color:'red',fontSize:16}}>{state.errorMessage}</Text>:null}
             <Spacer>
                 <Button title="Sign Up" onPress={() => signup({email,password})} />
-                
+            </Spacer>
+            <Spacer>
+                <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
+                    <Text style={styles.linkText}>Already have an account? Sign in</Text>
+                </TouchableOpacity>
             </Spacer>
         </View>
     )
@@ -39,6 +43,9 @@ const styles = StyleSheet.create({
         flex: 1,
         justifyContent:'center',
         marginBottom:200
+    },
+    linkText:{
+        color:'blue'
     }
 })
 
