@@ -20,7 +20,7 @@ const AuthForm = ({ navigation, headerText, errorMessage, onSubmit, submitButton
             <Spacer>
                 <Button title={submitButtonText} onPress={() => onSubmit({ email, password })} />
             </Spacer>
-            <NavLink linkText="signup" navigation={navigation} routeName={routeName} />
+            <NavLink linkText={linkText} navigation={navigation} routeName={routeName} />
         </>
     )
 }
@@ -30,7 +30,6 @@ const NavLink = ({navigation, linkText, routeName}) => {
     return (
         <Spacer>
             <TouchableOpacity onPress={() => navigation.navigate(routeName)}>
-                {console.warn(routeName)}
                 <Text style={{color:'blue'}}>{linkText === 'signup' ? 'Already have an account? Sign in' : "Don't have an account? sign up"}</Text>
             </TouchableOpacity>
         </Spacer>

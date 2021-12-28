@@ -1,8 +1,5 @@
 import React,{ useContext} from 'react'
 import { View, StyleSheet } from 'react-native'
-import { Text, } from 'react-native-elements'
-import { TouchableOpacity } from 'react-native-gesture-handler'
-import Spacer from '../components/Spacer'
 import {Context} from '../context/AuthContext'
 import AuthForm from '../components/AuthForm'
 
@@ -21,11 +18,6 @@ export default function SignupScreen({ navigation }) {
              linkText="signup"
              routeName="Signin"
             />
-            {/* <Spacer>
-                <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
-                    <Text style={styles.linkText}>Already have an account? Sign in</Text>
-                </TouchableOpacity>
-            </Spacer> */}
         </View>
     )
 }
