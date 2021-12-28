@@ -1,10 +1,14 @@
 import React from 'react'
-import { View, Text } from 'react-native'
+import { View } from 'react-native'
+import {Text} from 'react-native-elements'
+import { SafeAreaView } from 'react-native-safe-area-context';
+import Map from '../context/Map';
 
 export default function TrackCreateScreen() {
     return (
-        <View>
-            <Text>TrackCreateScreen</Text>
-        </View>
+        <SafeAreaView >
+            <Text h3>TrackCreateScreen</Text>
+            <Map/>
+        </SafeAreaView>
     )
 }
