@@ -4,26 +4,21 @@ import { Text, Input, Button } from 'react-native-elements'
 import { TouchableOpacity } from 'react-native-gesture-handler'
 import Spacer from '../components/Spacer'
 import {Context} from '../context/AuthContext'
+import AuthForm from '../components/AuthForm'
 
 export default function SignupScreen({ navigation }) {
     const {state,signup} = useContext(Context);
-    const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     
     
     console.log(state)
     return (
         <View style={styles.container}>
-            <Spacer>
-                <Text h3> Sign Up for Tracker</Text>
-            </Spacer>
-            <Input autoCapitalize="none"  autoCorrect={false} label="Email" value={email} onChangeText={setEmail}/>
-            <Spacer />
-            <Input secureTextEntry autoCapitalize="none"  autoCorrect={false} label="Password" value={password} onChangeText={setPassword}/>
-            {state.errorMessage ? <Text style={{margin:15,color:'red',fontSize:16}}>{state.errorMessage}</Text>:null}
-            <Spacer>
-                <Button title="Sign Up" onPress={() => signup({email,password})} />
-            </Spacer>
+            <AuthForm
+             headerText="Sign Up for Tracker"
+             errorMessage={state.errorMessage}
+             submitButtonText="Sign Up"
+             onSubmit={signup}
+            />
             <Spacer>
                 <TouchableOpacity onPress={()=>navigation.navigate('Signin')}>
                     <Text style={styles.linkText}>Already have an account? Sign in</Text>
