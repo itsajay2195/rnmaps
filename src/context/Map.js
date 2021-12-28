@@ -2,6 +2,7 @@ import React from 'react'
 import { View, Text, StyleSheet,Dimensions } from 'react-native'
 import MapView,{Polyline}from 'react-native-maps'
 
+
 export default function Map() {
     let points = []
     for(let i=0;i<20;i++){
@@ -37,3 +38,5 @@ const styles = StyleSheet.create({
         height:Dimensions.get('window').height/2,
     }
 })
+
+
