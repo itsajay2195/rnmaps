@@ -1,15 +1,18 @@
-import React,{ useContext} from 'react'
+import React,{ useContext, useEffect} from 'react'
 import { View, StyleSheet } from 'react-native'
 import {Context} from '../context/AuthContext'
 import AuthForm from '../components/AuthForm'
 
 export default function SignupScreen({ navigation }) {
-    const {state,signup} = useContext(Context);
+    const {state,signup,localSignIn} = useContext(Context);
     
     
-    console.log(state)
+    useEffect(() => {
+        localSignIn()
+    }, [])
     return (
         <View style={styles.container}>
+            
             <AuthForm
              headerText="Sign Up for Tracker"
              errorMessage={state.errorMessage}
