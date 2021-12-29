@@ -6,35 +6,13 @@ import Map from '../context/Map';
 import { requestForegroundPermissionsAsync, watchPositionAsync, Accuracy } from 'expo-location';
 import { Context as LocationContext } from '../context/LocationContext';
 import '../_mockLocation'
+import useLocation from '../hooks/useLocation';
+import { withNavigationFocus } from 'react-navigation';
 
-export default function TrackCreateScreen() {
-    const [err,setErr] = useState(null);
+const TrackCreateScreen = ({isFocused}) =>{
     const {state, startRecording, addLocation} = useContext(LocationContext);
+    const [err] = useLocation(isFocused,addLocation) //location will be given by the expo location
 
-    const startWatching = async () => {
-        try {
-          const { granted } = await requestForegroundPermissionsAsync();
-          await watchPositionAsync({
-              // accuracy is basically how accurate we want our readting to be
-              // the reading might vary from 1 -5km to m accuracy, the higher the accuracy the more battery consumption
-              // BestForNavigation is the high accuracy
-              accuracy: Accuracy.BestForNavigation,
-              timeInterval:1000,
-              distanceInterval:10 
-          },(location)=>{
-            addLocation(location);
-          })
-          if (!granted) {
-            throw new Error('Location permission not granted');
-          }
-        } catch (e) {
-          setErr(e);
-        }
-      };
-
-    useEffect(()=>{
-        startWatching();
-    },[])
 
     return (
         <SafeAreaView >
@@ -47,3 +25,4 @@ export default function TrackCreateScreen() {
 
 
 
+export default withNavigationFocus(TrackCreateScreen);

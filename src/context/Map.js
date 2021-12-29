@@ -1,6 +1,6 @@
 import React,{useContext} from 'react'
 import { View, Text, StyleSheet,Dimensions, ActivityIndicator } from 'react-native'
-import MapView,{Polyline}from 'react-native-maps'
+import MapView,{Polyline, Circle}from 'react-native-maps'
 import { Context as LocationContext } from '../context/LocationContext';
 
 
@@ -17,19 +17,23 @@ export default function Map() {
            //latitudeDelta and longitude delta basically depicts the zoom level of the map
            <MapView 
            style={styles.mapStyle}
-           initialRegion={{
+           initialRegion={{ //initial region is kind of like the default view of the map
               ...currentLocation.coords,
               latitudeDelta:0.01,
               longitudeDelta:0.01
 
            }}
-           region={{
-            ...currentLocation.coords,
-            latitudeDelta:0.01,
-            longitudeDelta:0.01
-           }}>
+        //    region={{ // helps to track the user around
+        //     ...currentLocation.coords,
+        //     latitudeDelta:0.01,
+        //     longitudeDelta:0.01
+        //    }}
+           >
 
-               {/* <Polyline coordinates={points}></Polyline> */}
+               <Circle center={currentLocation.coords} 
+                       radius={25}
+                       strokeColor="rgba(158,158,255,1.0)"//this will be the border of the circle
+                       fillColor="rgba(158,158,255,0.3)"></Circle>
                
            </MapView>
         
