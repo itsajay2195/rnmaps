@@ -1,17 +1,15 @@
-import React from 'react'
-import { View, Text, StyleSheet,Dimensions } from 'react-native'
+import React,{useContext} from 'react'
+import { View, Text, StyleSheet,Dimensions, ActivityIndicator } from 'react-native'
 import MapView,{Polyline}from 'react-native-maps'
+import { Context as LocationContext } from '../context/LocationContext';
 
 
 export default function Map() {
-    let points = []
-    for(let i=0;i<20;i++){
-        points.push({
-            latitude:37.33233 + i * 0.001,
-            longitude:-122.03121 +i * 0.001
-        })
+    const {state:{currentLocation}} = useContext(LocationContext);
+    
+    if(!currentLocation){
+        return <ActivityIndicator size="large" style={{marginTop:Dimensions.get('window').height/3}}/>
     }
-
     return (
            //Android is going to use google maps, and while displaying its longitude and latitude are going to be 0,0
            //iOS is going to use apple maps, and while displaying it is going to display your local country's view
@@ -20,13 +18,18 @@ export default function Map() {
            <MapView 
            style={styles.mapStyle}
            initialRegion={{
-              latitude:37.33233,
-              longitude:-122.03121,
+              ...currentLocation.coords,
               latitudeDelta:0.01,
               longitudeDelta:0.01
 
+           }}
+           region={{
+            ...currentLocation.coords,
+            latitudeDelta:0.01,
+            longitudeDelta:0.01
            }}>
-               <Polyline coordinates={points}></Polyline>
+
+               {/* <Polyline coordinates={points}></Polyline> */}
                
            </MapView>
         
