@@ -8,10 +8,13 @@ import { Context as LocationContext } from '../context/LocationContext';
 import '../_mockLocation'
 import useLocation from '../hooks/useLocation';
 import { withNavigationFocus } from 'react-navigation';
+import TrackForm from '../components/TrackForm';
 
 const TrackCreateScreen = ({isFocused}) =>{
     const {state, startRecording, addLocation} = useContext(LocationContext);
-    const [err] = useLocation(isFocused,addLocation) //location will be given by the expo location
+    const [err] = useLocation(isFocused,(location)=>{
+        addLocation(location, state.recording)}
+        ) //location will be given by the expo location
 
 
     return (
@@ -19,6 +22,7 @@ const TrackCreateScreen = ({isFocused}) =>{
             <Text h3>TrackCreateScreen</Text>
             <Map/>
             {err && <Text>please enable location services</Text>}
+            <TrackForm/>
         </SafeAreaView>
     )
 }
