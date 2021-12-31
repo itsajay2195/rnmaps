@@ -35,7 +35,6 @@ const addLocation = dispatch => (location, recording) => {
 }
 
 const startRecording = dispatch => (location, recording) => {
-
     dispatch({ type: 'start_recording' })
 }
 
@@ -44,9 +43,9 @@ const stopRecording = dispatch => (location, recording) => {
     dispatch({ type: 'stop_recording' })
 }
 
-const changeName = dispatch => (location, recording) => {
-
-    dispatch({ type: 'change_name' })
+const changeName = dispatch => (name) => {
+    console.log('change name is ')
+    dispatch({ type: 'change_name',payload:name })
 }
 
 
