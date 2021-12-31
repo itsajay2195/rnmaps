@@ -5,7 +5,7 @@ import { Context as LocationContext } from '../context/LocationContext';
 
 
 export default function Map() {
-    const {state:{currentLocation}} = useContext(LocationContext);
+    const {state:{currentLocation,locations}} = useContext(LocationContext);
     
     if(!currentLocation){
         return <ActivityIndicator size="large" style={{marginTop:Dimensions.get('window').height/3}}/>
@@ -23,17 +23,14 @@ export default function Map() {
               longitudeDelta:0.01
 
            }}
-        //    region={{ // helps to track the user around
-        //     ...currentLocation.coords,
-        //     latitudeDelta:0.01,
-        //     longitudeDelta:0.01
-        //    }}
            >
+               <Polyline coordinates={locations.map(loc => loc.coords)}/>
 
                <Circle center={currentLocation.coords} 
                        radius={25}
                        strokeColor="rgba(158,158,255,1.0)"//this will be the border of the circle
                        fillColor="rgba(158,158,255,0.3)"></Circle>
+
                
            </MapView>
         

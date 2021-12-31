@@ -15,7 +15,7 @@ const TrackCreateScreen = ({isFocused}) =>{
     const callback = useCallback(location => {
         addLocation(location, state.recording)
     })
-    const [err] = useLocation(isFocused,callback ) //location will be given by the expo location
+    const [err] = useLocation(isFocused || state.recording,callback ) //location will be given by the expo location
 
     console.log(state.locations.length)
     return (
