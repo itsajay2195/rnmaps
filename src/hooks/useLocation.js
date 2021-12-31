@@ -4,11 +4,13 @@ import { call } from 'react-native-reanimated';
 
 export default (shouldTrack, callback) => {
     const [err,setErr] = useState(null);
-    const [subscriber,setSubscriber] = useState(null)
-    const startWatching = async () => {
+   
+    useEffect(()=>{
+      let subscriber
+      const startWatching = async () => {
         try {
           const { granted } = await requestForegroundPermissionsAsync();
-          const sub = await watchPositionAsync({
+          subscriber = await watchPositionAsync({
               // accuracy is basically how accurate we want our readting to be
               // the reading might vary from 1 -5km to m accuracy, the higher the accuracy the more battery consumption
               // BestForNavigation is the high accuracy
@@ -18,7 +20,6 @@ export default (shouldTrack, callback) => {
           },
             callback
           );
-          setSubscriber(sub);
           if (!granted) {
             throw new Error('Location permission not granted');
           }
@@ -26,15 +27,23 @@ export default (shouldTrack, callback) => {
           setErr(e);
         }
       };
-
-    useEffect(()=>{
         if(shouldTrack){
             startWatching();
         }else{
-            subscriber.remove();
-            setSubscriber(null)
+          //  console.warn(subscriber)
+          if(subscriber){
+              subscriber.remove();
+          }
+           subscriber = null;
         }
-    },[shouldTrack])
+
+        return ()=>{
+          if(subscriber){
+            subscriber.remove();
+          }
+
+        }
+    },[shouldTrack,callback])
 
     return [err];
     

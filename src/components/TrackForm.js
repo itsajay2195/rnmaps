@@ -6,7 +6,7 @@ import { Context as LocationContext } from '../context/LocationContext';
 
 export default function TrackForm() {
     const {state, startRecording, stopRecording,changeName} = useContext(LocationContext);
-
+  
     return (
         <>
             <Spacer>

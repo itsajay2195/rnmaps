@@ -26,34 +26,33 @@ const locationReducer = (state, action) => {
 
 
 
-const addLocation = dispatch => (location,recording)=>{
-    console.log('add loc called')
-    dispatch({type:'add_current_location',payload:location})
-    if(recording){
-        dispatch({type:'add_location',payload:location})
-        
-    }  
+const addLocation = dispatch => (location, recording) => {
+    dispatch({ type: 'add_current_location', payload: location })
+    if (recording) {
+        dispatch({ type: 'add_location', payload: location })
+
+    }
 }
 
-const startRecording = dispatch => (location,recording)=>{
-    console.log('start rec called')
-    dispatch({type:'start_recording'})
+const startRecording = dispatch => (location, recording) => {
+
+    dispatch({ type: 'start_recording' })
 }
 
-const stopRecording = dispatch => (location,recording)=>{
-    console.log('stop rec called')
-    dispatch({type:'stop_recording'})
+const stopRecording = dispatch => (location, recording) => {
+
+    dispatch({ type: 'stop_recording' })
 }
 
-const changeName = dispatch => (location,recording)=>{
-    console.log('change name  called')
-    dispatch({type:'change_name'})
+const changeName = dispatch => (location, recording) => {
+
+    dispatch({ type: 'change_name' })
 }
 
 
 
-export const {Context,Provider} = createDataContext(
+export const { Context, Provider } = createDataContext(
     locationReducer,
-    {addLocation,startRecording,stopRecording,changeName},
-    {name:'',recording:false, locations:[],currentLocation:null} // initial state
+    { addLocation, startRecording, stopRecording, changeName },
+    { name: '', recording: false, locations: [], currentLocation: null } // initial state
 )

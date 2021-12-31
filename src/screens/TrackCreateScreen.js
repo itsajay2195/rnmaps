@@ -1,4 +1,4 @@
-import React,{useEffect,useState, useContext} from 'react'
+import React,{useEffect,useCallback, useContext} from 'react'
 import { View } from 'react-native'
 import {Text} from 'react-native-elements'
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -12,11 +12,12 @@ import TrackForm from '../components/TrackForm';
 
 const TrackCreateScreen = ({isFocused}) =>{
     const {state, startRecording, addLocation} = useContext(LocationContext);
-    const [err] = useLocation(isFocused,(location)=>{
-        addLocation(location, state.recording)}
-        ) //location will be given by the expo location
+    const callback = useCallback(location => {
+        addLocation(location, state.recording)
+    })
+    const [err] = useLocation(isFocused,callback ) //location will be given by the expo location
 
-
+    console.log(state.locations.length)
     return (
         <SafeAreaView >
             <Text h3>TrackCreateScreen</Text>
