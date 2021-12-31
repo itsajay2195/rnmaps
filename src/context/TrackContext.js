@@ -1,4 +1,5 @@
 import createDataContext from './createDataContext'
+import tracker from '../api/tracker'
 
 
 const TrackReducer = (state, action) => {
@@ -16,8 +17,9 @@ const TrackReducer = (state, action) => {
 
 
 
-const addTrack = (dispatch) =>(name, locations) => {
-    console.log('hi',name,locations.length)
+const addTrack = (dispatch) =>async(name, locations) => {
+    const response = await tracker.post('/tracks', { name, locations })
+    // dispatch({ type: 'add_track', payload: response.data })
 }
 
 
