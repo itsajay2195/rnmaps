@@ -9,6 +9,7 @@ import '../_mockLocation'
 import useLocation from '../hooks/useLocation';
 import { withNavigationFocus } from 'react-navigation';
 import TrackForm from '../components/TrackForm';
+import {FontAwesome} from '@expo/vector-icons'
 
 const TrackCreateScreen = ({isFocused}) =>{
     const {state, startRecording, addLocation} = useContext(LocationContext);
@@ -28,6 +29,9 @@ const TrackCreateScreen = ({isFocused}) =>{
     )
 }
 
-
+TrackCreateScreen.navigationOptions ={
+    title: 'Add Track',
+    tabBarIcon: <FontAwesome name="plus" size={20}/>
+}
 
 export default withNavigationFocus(TrackCreateScreen);

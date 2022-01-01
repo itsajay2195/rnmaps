@@ -34,3 +34,7 @@ export default function TrackListScreen() {
         </View>
     )
 }
+
+TrackListScreen.navigationOptions = {
+    title: 'Tracks'
+}
